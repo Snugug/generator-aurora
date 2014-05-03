@@ -43,7 +43,7 @@ $ npm install -g generator-aurora
 Finally, initiate the generator:
 
 ```
-$ yo Aurora
+$ yo aurora
 ```
 
 ### Getting To Know Yeoman
