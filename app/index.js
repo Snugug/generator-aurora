@@ -5,6 +5,7 @@ var yeoman = require('yeoman-generator');
 var chalk = require('chalk');
 var sh = require('execSync');
 var _s = require('underscore.string');
+var fs = require('fs');
 
 
 var AuroraGenerator = yeoman.generators.Base.extend({
@@ -21,7 +22,7 @@ var AuroraGenerator = yeoman.generators.Base.extend({
       //////////////////////////////
       if (!this.options['skip-install']) {
         var bower = this.projectOptions.indexOf('Bower') > -1 ? true : false;
-        var npm = this.projectOptions.indexOf('Task Runner') > -1 ? true : false;
+	var npm = this.projectOptions.indexOf('Gulp') > -1 ? true : false;
 
         sh.run('bundle install --path vendor');
 
@@ -32,6 +33,11 @@ var AuroraGenerator = yeoman.generators.Base.extend({
           });
         }
       }
+
+      //////////////////////////////
+      // Move Yo Storage
+      //////////////////////////////
+      fs.renameSync('../.yo-rc.json', '.yo-rc.json');
 
       //////////////////////////////
       // If the --git flag is passed, initialize git and add for initial commit
@@ -85,19 +91,20 @@ var AuroraGenerator = yeoman.generators.Base.extend({
         type: 'checkbox',
         name: 'projectOptions',
         message: 'What options would you like to include?',
-        choices: ['Task Runner', 'Bower']
+	choices: ['Gulp', 'Bower']
       }
     ];
-
-
-
-
 
     this.prompt(prompts, function (props) {
       this.projectName = props.projectName;
       this.projectSlug = _s.slugify(props.projectName);
       this.projectType = props.projectType;
       this.projectOptions = props.projectOptions;
+
+      this.config.set('projectName', this.projectName);
+      this.config.set('projectSlug', this.projectSlug);
+      this.config.set('projectType', this.projectType);
+      this.config.set('projectOptions', this.projectOptions);
 
       done();
     }.bind(this));
