@@ -128,7 +128,7 @@ var AuroraGenerator = yeoman.generators.Base.extend({
   },
 
   options: function () {
-    if (this.projectOptions.indexOf('Task Runner') > -1) {
+    if (this.projectOptions.indexOf('Gulp') > -1) {
       this.template('_package.json', this.projectSlug + '/package.json');
       this.template('Gulpfile.js', this.projectSlug + '/Gulpfile.js');
     }
