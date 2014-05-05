@@ -1,18 +1,16 @@
 'use strict';
-var util = require('util');
-var path = require('path');
 var yeoman = require('yeoman-generator');
 var chalk = require('chalk');
 var sh = require('execSync');
 var _s = require('underscore.string');
 var fs = require('fs');
 
+var shared = require('../shared.js');
+
 
 var AuroraGenerator = yeoman.generators.Base.extend({
   init: function () {
     this.pkg = require('../package.json');
-
-    var _this = this;
 
     this.on('end', function () {
       process.chdir(this.projectSlug);
@@ -22,7 +20,7 @@ var AuroraGenerator = yeoman.generators.Base.extend({
       //////////////////////////////
       if (!this.options['skip-install']) {
         var bower = this.projectOptions.indexOf('Bower') > -1 ? true : false;
-	var npm = this.projectOptions.indexOf('Gulp') > -1 ? true : false;
+        var npm = this.projectOptions.indexOf('Gulp') > -1 ? true : false;
 
         sh.run('bundle install --path vendor');
 
@@ -53,20 +51,10 @@ var AuroraGenerator = yeoman.generators.Base.extend({
     // have Yeoman greet the user
     // this.log(this.yeoman);
 
-    var welcome = '\n' + chalk.grey('____________________________________________________________________________________________        ') +
-'\n' + chalk.grey(' ____________________________________________________________________________________________       ') +
-'\n' + chalk.grey('  ____________________________________________________________________________________________      ') +
-'\n' + chalk.grey('   __') + '/\\\\\\\\\\\\\\\\\\' + chalk.grey('______') + '/\\\\\\' + chalk.grey('____') + '/\\\\\\' + chalk.grey('___') + '/\\\\/\\\\\\\\\\\\\\' + chalk.grey('_______') + '/\\\\\\\\\\' + chalk.grey('______') + '/\\\\/\\\\\\\\\\\\\\' + chalk.grey('____') + '/\\\\\\\\\\\\\\\\\\' + chalk.grey('____') + '     ' +
-'\n' + chalk.grey('    _') + '\\////////\\\\\\' + chalk.grey('____') + '\\/\\\\\\' + chalk.grey('___') + '\\/\\\\\\' + chalk.grey('__') + '\\/\\\\\\/////\\\\\\' + chalk.grey('____') + '/\\\\\\///\\\\\\' + chalk.grey('___') + '\\/\\\\\\/////\\\\\\' + chalk.grey('__') + '\\////////\\\\\\' + chalk.grey('___') + '    ' +
-'\n' + chalk.grey('     ___') + '/\\\\\\\\\\\\\\\\\\\\' + chalk.grey('___') + '\\/\\\\\\' + chalk.grey('___') + '\\/\\\\\\' + chalk.grey('__') + '\\/\\\\\\' + chalk.grey('___') + '\\///' + chalk.grey('____') + '/\\\\\\' + chalk.grey('__') + '\\//\\\\\\' + chalk.grey('__') + '\\/\\\\\\' + chalk.grey('___') + '\\///' + chalk.grey('_____') + '/\\\\\\\\\\\\\\\\\\\\' + chalk.grey('__') + '   ' +
-'\n' + chalk.grey('      __') + '/\\\\\\/////\\\\\\' + chalk.grey('___') + '\\/\\\\\\' + chalk.grey('___') + '\\/\\\\\\' + chalk.grey('__') + '\\/\\\\\\' + chalk.grey('__________') + '\\//\\\\\\' + chalk.grey('__') + '/\\\\\\' + chalk.grey('___') + '\\/\\\\\\' + chalk.grey('___________') + '/\\\\\\/////\\\\\\' + chalk.grey('__') + '  ' +
-'\n' + chalk.grey('       _') + '\\//\\\\\\\\\\\\\\\\/\\\\' + chalk.grey('__') + '\\//\\\\\\\\\\\\\\\\\\' + chalk.grey('___') + '\\/\\\\\\' + chalk.grey('___________') + '\\///\\\\\\\\\\/' + chalk.grey('____') + '\\/\\\\\\' + chalk.grey('__________') + '\\//\\\\\\\\\\\\\\\\/\\\\' + chalk.grey('_') + ' ' +
-'\n' + chalk.grey('        __') + '\\////////\\//' + chalk.grey('____') + '\\/////////' + chalk.grey('____') + '\\///' + chalk.grey('______________') + '\\/////' + chalk.grey('______') + '\\///' + chalk.grey('____________') + '\\////////\\//' + chalk.grey('__');
-
-    this.log(welcome);
+    this.log(shared.welcome());
 
     // replace it with a short and sweet description of your generator
-    this.log(chalk.magenta('\nYou\'re creating an Aurora based Drupal theme.\n' + chalk.grey('http://drupal.org/project/aurora') + ' - ' + chalk.grey('http://snugug.github.io/Aurora/\n')));
+    this.log(chalk.magenta('\nYou\'re creating an Aurora based Drupal theme.' + shared.links()));
 
     var prompts = [
       {
@@ -87,12 +75,7 @@ var AuroraGenerator = yeoman.generators.Base.extend({
         choices: ['Aurora', 'Corona', 'Polaris', 'North'],
         default: 'Aurora'
       },
-      {
-        type: 'checkbox',
-        name: 'projectOptions',
-        message: 'What options would you like to include?',
-	choices: ['Gulp', 'Bower']
-      }
+      shared.extras()
     ];
 
     this.prompt(prompts, function (props) {
