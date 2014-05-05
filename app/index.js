@@ -157,8 +157,8 @@ var AuroraGenerator = yeoman.generators.Base.extend({
         //////////////////////////////
         var globals = ['variables', 'functions', 'mixins', 'extends'];
         for (var i in globals) {
-          this.copy('all.scss', this.projectSlug + 'sass/partials/global/_' + globals[i] + '.scss');
-          this.copy('gitkeep', this.projectSlug + 'sass/partials/global/' + globals[i] + '/.gitkeep');
+	  this.copy('north/all.scss', this.projectSlug + '/sass/partials/global/_' + globals[i] + '.scss');
+	  this.copy('gitkeep', this.projectSlug + '/sass/partials/global/' + globals[i] + '/.gitkeep');
         }
 
         //////////////////////////////
