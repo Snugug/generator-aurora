@@ -1,3 +1,4 @@
+name = <%= projectSlug %>
 description =  <%= projectSlug %> theme based on the Aurora base theme.
 core = 7.x
 base theme = aurora
