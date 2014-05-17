@@ -1,5 +1,5 @@
-name = <%= projectSlug %>
-description =  <%= projectSlug %> theme based on the Aurora base theme.
+name = <%= projectName %>
+description =  <%= projectName %> theme based on the Aurora base theme.
 core = 7.x
 base theme = aurora
 
@@ -23,6 +23,7 @@ stylesheets[print][] = 'css/print.css'
 ; ========================================
 ; Scripts
 ; ========================================
+; scripts[] = 'js/<%= projectSlug %>.js'
 
 ; ========================================
 ; Modernizr
