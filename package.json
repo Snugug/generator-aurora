@@ -16,7 +16,7 @@
       "email": "npm@iancarrico.com",
       "url": "https://github.com/iamcarrico"
     }
-  ]
+  ],
   "engines": {
     "node": ">=0.10.0"
   },
