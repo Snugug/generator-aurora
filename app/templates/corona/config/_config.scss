@@ -4,6 +4,14 @@
 // Generally included here are only Compass Extension imports and imports
 // for variables, functions, mixins, and extendables.
 
+// A few default variables we want to set BEFORE we import compass.
+//
+// Why? Well, compass will override these. And to make sure that we can override
+// them later for our IE stylesheets, we need to declare them now.
+$graceful-usage-threshold:    1         !default;
+$critical-usage-threshold:    0.1       !default;
+$browser-minimum-versions:    (ie: '9') !default;
+
 // Compass Extensions
 //
 // Put an extra compass extensions here. Aurora already puts in respond-to,
@@ -19,7 +27,6 @@
 // Any other imports to add. Normally, these do not include any css, but just
 // functions, variables, etc. to be used by other files.
 
-@import "variables";
 @import "functions";
 @import "mixins";
-
+@import "variables";

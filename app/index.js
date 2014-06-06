@@ -22,7 +22,7 @@ var AuroraGenerator = yeoman.generators.Base.extend({
         var bower = this.projectOptions.indexOf('Bower') > -1 ? true : false;
         var npm = this.projectOptions.indexOf('Gulp') > -1 ? true : false;
 
-        sh.run('bundle install --path vendor');
+        sh.run('bundle install --path vendor/bundle');
 
         if (bower || npm) {
           this.installDependencies({
@@ -30,6 +30,10 @@ var AuroraGenerator = yeoman.generators.Base.extend({
             npm: npm
           });
         }
+      }
+
+      if (!this.options['skip-compass']) {
+        sh.run('bundle exec compass compile');
       }
 
       //////////////////////////////
@@ -40,8 +44,10 @@ var AuroraGenerator = yeoman.generators.Base.extend({
       //////////////////////////////
       // If the --git flag is passed, initialize git and add for initial commit
       //////////////////////////////
-      sh.run('git init');
-      sh.run('git add . && git commit -m "Aurora Generation"');
+      if (this.options['git']) {
+        sh.run('git init');
+        sh.run('git add . && git commit -m "Aurora Generation"');
+      }
     });
   },
 

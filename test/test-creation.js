@@ -10,7 +10,7 @@ describe('Aurora generator', function () {
         return done(err);
       }
 
-      this.app = helpers.createGenerator('Aurora:app', [
+      this.app = helpers.createGenerator('aurora:app', [
         '../../app'
       ]);
       done();
@@ -25,9 +25,11 @@ describe('Aurora generator', function () {
     ];
 
     helpers.mockPrompt(this.app, {
-      'someOption': true
+      'projectName': 'corona',
+      'projectType': 'Corona',
+      'projectOptions': []
     });
-    this.app.options['skip-install'] = true;
+
     this.app.run({}, function () {
       helpers.assertFile(expected);
       done();
