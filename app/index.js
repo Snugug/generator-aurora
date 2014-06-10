@@ -22,7 +22,7 @@ var AuroraGenerator = yeoman.generators.Base.extend({
         var bower = this.projectOptions.indexOf('Bower') > -1 ? true : false;
         var npm = this.projectOptions.indexOf('Gulp') > -1 ? true : false;
 
-        sh.run('bundle install --path vendor/bundle');
+      	sh.run('bundle install --path .vendor');
 
         if (bower || npm) {
           this.installDependencies({
