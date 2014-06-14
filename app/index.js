@@ -125,7 +125,12 @@ var AuroraGenerator = yeoman.generators.Base.extend({
 
   options: function () {
     if (this.projectOptions.indexOf('Gulp') > -1) {
-      this.template('_package.json', this.projectSlug + '/package.json');
+      this.template('_gulp.package.json', this.projectSlug + '/package.json');
+      this.template('Gulpfile.js', this.projectSlug + '/Gulpfile.js');
+    }
+
+    if (this.projectOptions.indexOf('Grunt') > -1) {
+      this.template('_grunt.package.json', this.projectSlug + '/package.json');
       this.template('Gulpfile.js', this.projectSlug + '/Gulpfile.js');
     }
 
