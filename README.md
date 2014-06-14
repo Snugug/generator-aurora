@@ -52,6 +52,10 @@ Install (or update/reset) extras after theme install:
 $ yo aurora:extras
 ```
 
+### Features
+
+For a full list of features, check out the [Aurora Documentation](http://snugug.github.io/Aurora/). Currently we have both Grunt and Gulp support, although we are doing some more testing to ensure both work flawlessly, and with all the tasks you need. If you find any issues, please add them to the issue queue. 
+
 ### Getting To Know Yeoman
 
 Yeoman has a heart of gold. He's a person with feelings and opinions, but he's very easy to work with. If you think he's too opinionated, he can be easily convinced.
