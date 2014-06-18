@@ -13,7 +13,10 @@ var AuroraGenerator = yeoman.generators.Base.extend({
     this.pkg = require('../package.json');
 
     this.on('end', function () {
-      process.chdir(this.projectSlug);
+      //////////////////////////////
+      // Move Yo Storage
+      //////////////////////////////
+      fs.renameSync('../.yo-rc.json', '.yo-rc.json');
 
       //////////////////////////////
       // Install dependencies unless --skip-install is passed
@@ -35,11 +38,6 @@ var AuroraGenerator = yeoman.generators.Base.extend({
       if (!this.options['skip-compass']) {
         sh.run('bundle exec compass compile');
       }
-
-      //////////////////////////////
-      // Move Yo Storage
-      //////////////////////////////
-      fs.renameSync('../.yo-rc.json', '.yo-rc.json');
 
       //////////////////////////////
       // If the --git flag is passed, initialize git and add for initial commit
@@ -100,66 +98,73 @@ var AuroraGenerator = yeoman.generators.Base.extend({
   },
 
   core: function () {
-    this.copy('editorconfig', this.projectSlug + '/.editorconfig');
-    this.copy('jshintrc', this.projectSlug + '/.jshintrc');
-    this.copy('gitignore', this.projectSlug + '/.gitignore');
+    // Create our theme directory
+    this.mkdir(this.projectSlug);
+    // Set our destination to be the new directory.
+    this.destinationRoot(this.projectSlug);
 
-    this.copy('Gemfile', this.projectSlug + '/Gemfile');
-    this.copy('config.rb', this.projectSlug + '/config.rb');
 
-    this.copy('README-Sass.md', this.projectSlug + '/sass/README.md');
-    this.copy('README-Partials.md', this.projectSlug + '/sass/partials/README.md');
+    this.copy('editorconfig', '.editorconfig');
+    this.copy('jshintrc', '.jshintrc');
+    this.copy('gitignore', '.gitignore');
+    this.copy('ruby-version', '.ruby-version');
+
+    this.copy('Gemfile', 'Gemfile');
+    this.copy('config.rb', 'config.rb');
+
+    this.copy('README-Sass.md', 'sass/README.md');
+    this.copy('README-Partials.md', 'sass/partials/README.md');
 
     var keep = ['images', 'fonts', 'js'];
     for (var i in keep) {
-      this.copy('gitkeep', this.projectSlug + '/' + keep[i] + '/.gitkeep');
+      this.copy('gitkeep', '' + keep[i] + '/.gitkeep');
     }
   },
 
   drupal: function () {
-    this.template('_aurora.info', this.projectSlug + '/' + this.projectSlug + '.info');
+    this.template('_aurora.info', '' + this.projectSlug + '.info');
 
-    this.template('_template.php', this.projectSlug + '/template.php');
-    this.copy('README-templates.md', this.projectSlug + '/templates/README.md');
+    this.template('_template.php', 'template.php');
+    this.copy('README-templates.md', 'templates/README.md');
   },
 
   options: function () {
     if (this.projectOptions.indexOf('Gulp') > -1) {
-      this.template('_gulp.package.json', this.projectSlug + '/package.json');
-      this.template('Gulpfile.js', this.projectSlug + '/Gulpfile.js');
+      this.template('_gulp.package.json', 'package.json');
+      this.template('Gulpfile.js', 'gulpfile.js');
     }
 
     if (this.projectOptions.indexOf('Grunt') > -1) {
-      this.template('_grunt.package.json', this.projectSlug + '/package.json');
-      this.template('Gruntfile.js', this.projectSlug + '/Gulpfile.js');
+      this.template('_grunt.package.json', 'package.json');
+      this.template('Gruntfile.js', 'Gruntfile.js');
     }
 
     if (this.projectOptions.indexOf('Bower') > -1) {
-      this.template('_bower.json', this.projectSlug + '/bower.json');
+      this.template('_bower.json', 'bower.json');
     }
   },
 
   type: function () {
     switch (_s.slugify(this.projectType)) {
       case 'aurora':
-        this.directory('aurora', this.projectSlug + '/sass');
+        this.directory('aurora', 'sass');
         break;
       case 'corona':
-        this.directory('corona', this.projectSlug + '/sass');
+        this.directory('corona', 'sass');
         break;
       case 'polaris':
-        this.directory('polaris', this.projectSlug + '/sass');
+        this.directory('polaris', 'sass');
         break;
       case 'north':
-        this.copy('north/style.scss', this.projectSlug + '/sass/style.scss');
+        this.copy('north/style.scss', 'sass/style.scss');
 
         //////////////////////////////
         // North Globals
         //////////////////////////////
         var globals = ['variables', 'functions', 'mixins', 'extends'];
         for (var i in globals) {
-	  this.copy('north/all.scss', this.projectSlug + '/sass/partials/global/_' + globals[i] + '.scss');
-	  this.copy('gitkeep', this.projectSlug + '/sass/partials/global/' + globals[i] + '/.gitkeep');
+	  this.copy('north/all.scss', 'sass/partials/global/_' + globals[i] + '.scss');
+	  this.copy('gitkeep', 'sass/partials/global/' + globals[i] + '/.gitkeep');
         }
 
         //////////////////////////////
@@ -167,7 +172,7 @@ var AuroraGenerator = yeoman.generators.Base.extend({
         //////////////////////////////
         var keep = ['sass/partials', 'sass/partials/components', 'sass/partials/layouts', 'sass/enhancements', 'sass/fallbacks'];
         for (var i in keep) {
-          this.copy('gitkeep', this.projectSlug + '/' + keep[i] + '/.gitkeep');
+          this.copy('gitkeep', keep[i] + '/.gitkeep');
         }
         break;
     }
