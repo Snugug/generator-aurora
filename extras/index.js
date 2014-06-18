@@ -54,8 +54,13 @@ var AuroraExtrasGenerator = yeoman.generators.Base.extend({
 
   options: function () {
     if (this.projectOptions.indexOf('Gulp') > -1) {
-      this.template('../../app/templates/_package.json', 'package.json');
-      this.template('../../app/templates/Gulpfile.js', 'Gulpfile.js');
+      this.template('../../app/templates/_gulp.package.json', 'package.json');
+      this.template('../../app/templates/Gulpfile.js', 'gulpfile.js');
+    }
+
+    if (this.projectOptions.indexOf('Grunt') > -1) {
+      this.template('../../app/templates/_grunt.package.json', 'package.json');
+      this.template('../../app/templates/Gruntfile.js', 'Gruntfile.js');
     }
 
     if (this.projectOptions.indexOf('Bower') > -1) {
