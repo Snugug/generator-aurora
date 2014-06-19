@@ -13,6 +13,20 @@ module.exports.welcome = function () {
 '\n' + chalk.grey('        __') + '\\////////\\//' + chalk.grey('____') + '\\/////////' + chalk.grey('____') + '\\///' + chalk.grey('______________') + '\\/////' + chalk.grey('______') + '\\///' + chalk.grey('____________') + '\\////////\\//' + chalk.grey('__');
 };
 
+module.exports.projectName = function () {
+  return {
+    type: 'string',
+    name: 'projectName',
+    message: 'What\'s your theme\'s name?' + chalk.red(' (Required)'),
+    validate: function (input) {
+      if (input === '') {
+        return 'Please enter your theme\'s name';
+      }
+      return true;
+    }
+  };
+};
+
 module.exports.extras = function () {
   return {
     type: 'checkbox',

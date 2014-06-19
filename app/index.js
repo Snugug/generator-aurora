@@ -49,29 +49,18 @@ var AuroraGenerator = yeoman.generators.Base.extend({
     });
   },
 
-  askFor: function () {
-    var done = this.async();
-
-    // have Yeoman greet the user
-    // this.log(this.yeoman);
-
+  welcome: function () {
     this.log(shared.welcome());
 
     // replace it with a short and sweet description of your generator
     this.log(chalk.magenta('\nYou\'re creating an Aurora based Drupal theme.' + shared.links()));
+  },
+
+  askFor: function () {
+    var done = this.async();
 
     var prompts = [
-      {
-        type: 'string',
-        name: 'projectName',
-        message: 'What\'s your theme\'s name?' + chalk.red(' (Required)'),
-        validate: function (input) {
-          if (input === '') {
-            return 'Please enter your theme\'s name';
-          }
-          return true;
-        }
-      },
+      shared.projectName(),
       {
         type: 'list',
         name: 'projectType',
