@@ -77,14 +77,15 @@ var AuroraGenerator = yeoman.generators.Base.extend({
         name: 'projectType',
         message: 'What Aurora base would you like to use?',
         choices: ['Aurora', 'Corona', 'Polaris', 'North'],
-        default: 'Aurora'
+        default: 'Aurora',
+        filter: function( val ) { return val.toLowerCase(); }
       },
       shared.extras()
     ];
 
     this.prompt(prompts, function (props) {
       this.projectName = props.projectName;
-      this.projectSlug = _s.slugify(props.projectName);
+      this.projectSlug = _s.underscored(props.projectName);
       this.projectType = props.projectType;
       this.projectOptions = props.projectOptions;
 
@@ -145,7 +146,7 @@ var AuroraGenerator = yeoman.generators.Base.extend({
   },
 
   type: function () {
-    switch (_s.slugify(this.projectType)) {
+    switch (this.projectType) {
       case 'aurora':
         this.directory('aurora', 'sass');
         break;
