@@ -1,7 +1,9 @@
 {
   "name": "<%= projectSlug %>",
   "version": "0.0.0",
-  "dependencies": {},
+  "dependencies": {
+    "compass-options": "^0.1.1"
+  },
   "devDependencies": {
     "grunt": "~0.4.0",
     "grunt-contrib-watch": "~0.4.3",
