@@ -56,6 +56,10 @@ $ yo aurora:extras
 
 For a full list of features, check out the [Aurora Documentation](http://snugug.github.io/Aurora/). Currently we have both Grunt and Gulp support, although we are doing some more testing to ensure both work flawlessly, and with all the tasks you need. If you find any issues, please add them to the issue queue. 
 
+### generator-drupal-theme vs. generator-aurora
+
+Currently, these two generators have 100% feature parity as far as Aurora is concerned. Once development is fininished on [generator-drupal-theme](https://github.com/frontend-united/generator-drupal-theme) we will be focusing primarily on generator-drupal-theme, as it will be more generic. But until that point, feel free to use either. 
+
 ### Getting To Know Yeoman
 
 Yeoman has a heart of gold. He's a person with feelings and opinions, but he's very easy to work with. If you think he's too opinionated, he can be easily convinced.
