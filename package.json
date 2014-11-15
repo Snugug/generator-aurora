@@ -1,6 +1,6 @@
 {
   "name": "generator-aurora",
-  "version": "0.2.7",
+  "version": "0.3.0",
   "description": "Yeoman generator for creating the Aurora sub-theme.",
   "license": "MIT",
   "main": "app/index.js",
@@ -25,23 +25,19 @@
   },
   "files": [
     "app",
-    "extras",
-    "shared.js"
   ],
   "keywords": [
     "yeoman-generator",
     "drupal"
   ],
   "dependencies": {
-    "yeoman-generator": "~0.16.0",
-    "chalk": "~0.4.0",
-    "underscore.string": "~2.3.3",
-    "execSync": "~1.0.1-pre"
+    "yeoman-generator": "~0.18.0"
   },
   "devDependencies": {
     "mocha": "*"
   },
   "peerDependencies": {
-    "yo": ">=1.0.0"
+    "yo": ">=1.0.0",
+    "generator-drupal-theme": ">=0.1.5"
   }
 }
