@@ -2,6 +2,12 @@
 
 > [Yeoman](http://yeoman.io) generator for Drupal's [Aurora](https://drupal.org/project/aurora) theme
 
+## All active development has moved to generator-drupal-theme.
+
+This generator has been changed to just call the [generator-drupal-theme](https://github.com/frontend-united/generator-drupal-theme), and nothing more. It can still be used, but please file any issues on that repo.
+
+
+
 ```bash
 ____________________________________________________________________________________________
  ____________________________________________________________________________________________
@@ -54,11 +60,11 @@ $ yo aurora:extras
 
 ### Features
 
-For a full list of features, check out the [Aurora Documentation](http://snugug.github.io/Aurora/). Currently we have both Grunt and Gulp support, although we are doing some more testing to ensure both work flawlessly, and with all the tasks you need. If you find any issues, please add them to the issue queue. 
+For a full list of features, check out the [Aurora Documentation](http://snugug.github.io/Aurora/). Currently we have both Grunt and Gulp support, although we are doing some more testing to ensure both work flawlessly, and with all the tasks you need. If you find any issues, please add them to the issue queue.
 
 ### generator-drupal-theme vs. generator-aurora
 
-Currently, these two generators have 100% feature parity as far as Aurora is concerned. Once development is fininished on [generator-drupal-theme](https://github.com/frontend-united/generator-drupal-theme) we will be focusing primarily on generator-drupal-theme, as it will be more generic. But until that point, feel free to use either. 
+Currently, these two generators have 100% feature parity as far as Aurora is concerned. Once development is fininished on [generator-drupal-theme](https://github.com/frontend-united/generator-drupal-theme) we will be focusing primarily on generator-drupal-theme, as it will be more generic. But until that point, feel free to use either.
 
 ### Getting To Know Yeoman
 
